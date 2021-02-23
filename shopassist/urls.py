@@ -16,9 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
+from django.contrib.auth import views
+from .forms import UserLoginForm
+import os
+from django.conf import settings
 
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('admin/', admin.site.urls),
+    path(
+        'admin/login/',
+         views.LoginView.as_view(
+            template_name=os.path.join(settings.BASE_DIR, "shopassist/templates/admin/login.html"),
+            authentication_form=UserLoginForm
+        ),
+        name='login'
+    )
 ]

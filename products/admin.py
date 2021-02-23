@@ -10,6 +10,8 @@ class PromotionAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'shop', 'price')
+    search_fields = ('name',)
+    list_filter = ('promotion__store',)
 
     def shop(self, obj):
         return obj.promotion.store
