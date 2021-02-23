@@ -24,7 +24,6 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
-    path('admin/', admin.site.urls),
     path(
         'admin/login/',
          views.LoginView.as_view(
@@ -32,5 +31,7 @@ urlpatterns = [
             authentication_form=UserLoginForm
         ),
         name='login'
-    )
+    ),
+    path('admin/', admin.site.urls),
+
 ]
