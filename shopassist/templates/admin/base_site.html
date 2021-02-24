@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+{% block title %}{{ title }} | {{ site_title|default:_('Shop & Save') }}{% endblock %}
+
+{# Setup branding #}
+{% block branding %}
+
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        <img alt="Shop&Save" height="50%" src="{{MEDIA_URL}}logo.png" width="50%">
+        </span>
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}
+
+{% endblock %}
