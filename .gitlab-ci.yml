@@ -10,7 +10,7 @@ deploy_staging:
   type: deploy
   environment:
     name: staging
-    url: staging.shopandsave.net
+    url: staging.saveandshop.net
   script:
     - ssh autodeploy@$STAGE_SERVER "source ~/.venv/bin/activate && cd ~/staging && export GIT_SSL_NO_VERIFY=1 && git checkout main && git pull origin main && pip install -r requirements.txt"
   only:
