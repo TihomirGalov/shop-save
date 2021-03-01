@@ -12,6 +12,6 @@ deploy_staging:
     name: staging
     url: staging.shopandsave.com
   script:
-    - ssh autodeploy@$STAGE_SERVER "cd ~/staging && git checkout dev && git pull origin dev"
+    - ssh autodeploy@$STAGE_SERVER "source ~/.venv/bin/activate && cd ~/staging && git checkout dev && git pull origin dev && pip install -r requirements.txt"
   only:
     - main
