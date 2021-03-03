@@ -1,18 +1,15 @@
 {% extends "admin/base.html" %}
-{% load i18n %}
-{% block title %}{{ title }} | {{ site_title|default:_('Shop & Save') }}{% endblock %}
 
-{# Setup branding #}
+{% load static %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
 {% block branding %}
-
 <h1 id="site-name">
     <a href="{% url 'admin:index' %}">
-        <img alt="Shop&Save" height="50%" src="{{MEDIA_URL}}logo.png" width="50%">
-        </span>
+        <img src="{% static 'logo.png' %}" height="50%" width="50%" />
     </a>
 </h1>
 {% endblock %}
 
-{% block nav-global %}
-
-{% endblock %}
+{% block nav-global %}{% endblock %}
