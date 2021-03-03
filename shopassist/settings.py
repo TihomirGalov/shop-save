@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
 
     'stores',
     'products',
@@ -72,6 +73,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 JET_DEFAULT_THEME = 'light-blue'
 
 WSGI_APPLICATION = 'shopassist.wsgi.application'
@@ -126,7 +129,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 LOGIN_REDIRECT_URL = '/admin'
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+CRONJOBS = [
+    ('*/10 * * * *', 'stores.cron.get_data')
+]
+
