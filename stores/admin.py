@@ -5,7 +5,6 @@ from django.utils.html import format_html
 
 @admin.register(Store)
 class StoreAdmin(admin.ModelAdmin):
-    list_display = ('name', 'data')
+    list_display = ('name',)
 
-    def data(self, obj):
-        return obj.get_data()
+
