@@ -1,3 +1,4 @@
+
 {% extends "admin/base_site.html" %}
 {% load i18n static %}
 
@@ -34,39 +35,34 @@
 
 <div id="content-main">
 
-    {% if user.is_authenticated %}
-    <p class="errornote">
-        {% blocktranslate trimmed %}
-        You are authenticated as {{ username }}, but are not authorized to
-        access this page. Would you like to login to a different account?
-        {% endblocktranslate %}
-    </p>
-    {% endif %}
 
-    <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <div class="form-row">
+            {{ form.email.errors }}
+            <p>{{ form.email.label_tag }}</p> {{ form.email }}
+        </div>
         <div class="form-row">
             {{ form.username.errors }}
-            {{ form.username.label_tag }} {{ form.username }}
+            <p>{{ form.username.label_tag }}</p> {{ form.username }}
         </div>
         <div class="form-row">
-            {{ form.password.errors }}
-            {{ form.password.label_tag }} {{ form.password }}
+            {{ form.password1.errors }}
+            <p>{{ form.password1.label_tag }}</p> {{ form.password1 }}
             <input type="hidden" name="next" value="{{ next }}">
         </div>
-        {% url 'admin_password_reset' as password_reset_url %}
-        {% if password_reset_url %}
-        <div class="password-reset-link">
-            <a href="{{ password_reset_url }}">{% translate 'Forgotten your password or username?' %}</a>
+        <div class="form-row">
+            {{ form.password2.errors }}
+            <p>{{ form.password2.label_tag }}</p> {{ form.password2 }}
+            <input type="hidden" name="next" value="{{ next }}">
         </div>
-        {% endif %}
+
         <div class="submit-row">
-            <input type="submit" value="{% translate 'Log in' %}">
-            <input type="submit", name="guest_login", value="{% translate 'Log in as Guest' %}">
+            <input type="submit" value="{% translate 'Register' %}">
         </div>
-    </form>
-    <form action="/register" class="submit-row">
-        <input type="submit" value="{% translate 'Register' %}" />
     </form>
 
 </div>
+
+
 {% endblock %}
