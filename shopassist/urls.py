@@ -20,18 +20,28 @@ from django.contrib.auth import views
 from .forms import UserLoginForm
 import os
 from django.conf import settings
+from .views import register
+from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path(
-        'admin/login/',
+        'login/',
          views.LoginView.as_view(
             template_name=os.path.join(settings.BASE_DIR, "shopassist/templates/admin/login.html"),
             authentication_form=UserLoginForm
         ),
         name='login'
     ),
-    path('admin/', admin.site.urls),
-
+    path('register/', register, name='register'),
+    path('', admin.site.urls),
+    url(r'^i18n/', include('django.conf.urls.i18n'))
 ]
+
+urlpatterns += (
+        i18n_patterns(path(r"", admin.site.urls), prefix_default_language=False)
+        + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+        + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
