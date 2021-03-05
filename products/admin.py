@@ -12,7 +12,7 @@ import os
 
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('store', 'expires')
 
 
 class ExpiredFilter(admin.SimpleListFilter):
