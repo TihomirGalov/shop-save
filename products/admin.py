@@ -77,7 +77,7 @@ def add_to_wishlist(modeladmin, request, queryset):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'shop', 'promotion__expires', 'price')
+    list_display = ('name', 'shop', 'price')
     search_fields = ('name',)
     list_filter = ('promotion__store', ExpiredFilter)
     actions = [add_to_wishlist]
