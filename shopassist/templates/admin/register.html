@@ -33,6 +33,12 @@
 {% endfor %}
 {% endif %}
 
+<style>
+div.username {
+    width: 200px;
+}
+</style>
+
 <div id="content-main">
 
 
@@ -44,7 +50,7 @@
         </div>
         <div class="form-row">
             {{ form.username.errors }}
-            <p>{{ form.username.label_tag }}</p> {{ form.username }}
+            <p>{{ form.username.label_tag }}</p> <div class="username">{{ form.username }}</div>
         </div>
         <div class="form-row">
             {{ form.password1.errors }}

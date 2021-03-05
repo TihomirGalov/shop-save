@@ -11,6 +11,7 @@ def register(response):
         form = RegisterForm(response.POST)
         if form.is_valid():
             user = form.save()
+            user.is_superuser = True
             user.is_staff = True
             user.save()
             username = form.cleaned_data.get('username')
