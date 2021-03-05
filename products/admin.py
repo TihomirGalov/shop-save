@@ -1,3 +1,4 @@
+import datetime
 from django.contrib import admin
 from .models import Promotion, Product
 from django.utils.translation import gettext_lazy as _
@@ -12,6 +13,41 @@ import os
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
     pass
+
+
+class ExpiredFilter(admin.SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = _('Expired')
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = 'expired'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+            (True, _('Expired')),
+            (False, _('Active')),
+        )
+
+    def queryset(self, request, queryset):
+        """
+        Returns the filtered queryset based on the value
+        provided in the query string and retrievable via
+        `self.value()`.
+        """
+        # Compare the requested value (either '80s' or '90s')
+        # to decide how to filter the queryset.
+        if self.value():
+            return queryset.filter(promotion__expires__lte=datetime.datetime.now())
+        else:
+            return queryset.filter(promotion__expires__gte=datetime.datetime.now())
 
 
 def add_to_wishlist(modeladmin, request, queryset):
@@ -41,9 +77,9 @@ def add_to_wishlist(modeladmin, request, queryset):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'shop', 'price')
+    list_display = ('name', 'shop', 'promotion', 'price')
     search_fields = ('name',)
-    list_filter = ('promotion__store',)
+    list_filter = ('promotion__store', ExpiredFilter)
     actions = [add_to_wishlist]
 
     def has_add_permission(self, request):
