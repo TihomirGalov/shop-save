@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'b7-je%h60*rgryjoj!z9i_(-1h%_t)7)((7hk$-twhi=niueut'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -177,5 +177,10 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
         "label": _("Products"),
         "app_label": "products",
         "items": [{"name": "products.product", "label": _("Products")},]
+    },
+    {
+        "label": _("Wishlists"),
+        "app_label": "wishlists",
+        "items": [{"name": "wishlists.wishlist", "label": _("Wishlists")},]
     }
 ]
