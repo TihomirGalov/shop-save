@@ -12,6 +12,7 @@ class ActionForm(forms.Form):
         raise NotImplementedError()
 
     def save(self, queryset=None, user=None):
+
         try:
             self.form_action(queryset, user)
         except Exception as e:

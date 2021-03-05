@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.utils.translation import ugettext_lazy as _
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -152,3 +154,28 @@ CRONJOBS = [
     ('*/10 * * * *', 'stores.cron.get_data')
 ]
 
+JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
+    {
+        "label": _("Authentication and Authorization"),
+        "app_label": "auth",
+        "items": [
+            {"name": "group", "label": _("Groups")},
+            {"name": "user", "label": _("Users")},
+        ],
+    },
+    {
+        "label": _("Stores"),
+        "app_label": "stores",
+        "items": [{"name": "stores.store", "label": _("Stores")},]
+    },
+    {
+        "label": _("Promotions"),
+        "app_label": "products",
+        "items": [{"name": "products.promotion", "label": _("Promotions")},]
+    },
+    {
+        "label": _("Products"),
+        "app_label": "products",
+        "items": [{"name": "products.product", "label": _("Products")},]
+    }
+]
