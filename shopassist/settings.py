@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 
     'stores',
     'products',
+    'wishlists',
 ]
 JET_SIDE_MENU_COMPACT = True
 
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_currentuser.middleware.ThreadLocalUserMiddleware'
 ]
 
 ROOT_URLCONF = 'shopassist.urls'
@@ -128,6 +131,8 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+JET_APP_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultAppIndexDashboard'
 
 
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

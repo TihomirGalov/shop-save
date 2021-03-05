@@ -27,6 +27,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     path(
         'login/',
          views.LoginView.as_view(
