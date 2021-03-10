@@ -24,8 +24,8 @@ class UserLoginForm(AuthenticationForm):
 
     def clean(self):
         if len(self.cleaned_data.get('guest_login')):
-            username = 'gega'
-            password = 'Tihomir258159'
+            username = ''
+            password = ''
         else:
             username = self.cleaned_data.get('username')
             password = self.cleaned_data.get('password')
