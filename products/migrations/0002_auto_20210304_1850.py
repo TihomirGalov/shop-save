@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='promotion',
             name='expires',
-            field=models.DateTimeField(default=datetime.datetime(2021, 3, 4, 18, 50, 57, 157243), verbose_name='Expires'),
+            field=models.DateTimeField(verbose_name='Expires'),
         ),
         migrations.AlterField(
             model_name='promotion',

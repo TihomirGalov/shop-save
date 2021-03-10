@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Promotion(models.Model):
     store = models.ForeignKey("stores.Store", on_delete=models.CASCADE, related_name='promotions', verbose_name=_("Store"))
-    expires = models.DateTimeField(default=datetime.datetime.today(), verbose_name=_("Expires"))
+    expires = models.DateTimeField(verbose_name=_("Expires"))
 
     def __str__(self):
         return f"{self.store} {self.expires}"
