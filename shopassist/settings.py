@@ -85,7 +85,7 @@ TEMPLATES = [
 ]
 
 
-JET_DEFAULT_THEME = 'light-blue'
+JET_DEFAULT_THEME = 'light-gray'
 
 WSGI_APPLICATION = 'shopassist.wsgi.application'
 

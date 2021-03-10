@@ -8,6 +8,8 @@ from django.urls import reverse
 from django.template.response import TemplateResponse
 from django.conf import settings
 import os
+from django.conf.urls import url
+from django.utils.html import format_html
 
 
 @admin.register(Promotion)
@@ -50,42 +52,61 @@ class ExpiredFilter(admin.SimpleListFilter):
             return queryset.filter(promotion__expires__gte=datetime.datetime.now())
 
 
-def add_to_wishlist(modeladmin, request, queryset):
-    if request.method != "POST":
-        form = AddToWishlist(queryset=queryset)
-    else:
-        form = AddToWishlist(queryset=queryset)
-        if form.is_valid():
-            form.save(queryset, request.user)
-            url = reverse(
-                "admin:products_product_changelist",
-                current_app="products",
-            )
-            return HttpResponseRedirect(url)
-    context = modeladmin.admin_site.each_context(request)
-    context["opts"] = modeladmin.model._meta
-    context["form"] = form
-    context["title"] = "Add to Wishlist"
-    template = os.path.join(settings.BASE_DIR, "products/templates/admin/product/run_action.html")
-
-    return TemplateResponse(
-        request,
-        template,
-        context,
-    )
-
-
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'shop', 'price')
+    list_display = ('name', 'shop', 'price', 'product_actions')
     search_fields = ('name',)
     list_filter = ('promotion__store', ExpiredFilter)
-    actions = [add_to_wishlist]
 
     def has_add_permission(self, request):
         return False
 
     def shop(self, obj):
         return obj.promotion.store
+
+    def add_action(self, request, product_id, *args, **kwargs):
+        return self.load_form(
+            request=request,
+            product_id=product_id,
+            action_form=AddToWishlist
+        )
+
+    def load_form(self, request, product_id, action_form):
+        obj = Product.objects.get(pk=product_id)
+        if request.method != "POST":
+            form = action_form(obj=obj)
+        else:
+            form = action_form(request.POST, obj=obj)
+        if form.is_valid():
+                form.save(obj, request.user)
+                url = reverse(
+                    "admin:products_product_changelist",
+                    current_app="products",
+                )
+                return HttpResponseRedirect(url)
+        context = self.admin_site.each_context(request)
+        context["opts"] = self.model._meta
+        context["form"] = form
+        context["title"] = "Add to Wishlist"
+        template = "admin/product/run_action.html"
+        return TemplateResponse(
+            request,
+            template,
+            context,
+        )
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            url(
+                r"^(?P<product_id>.+)/add/$",
+                self.admin_site.admin_view(self.add_action),
+                name="product-add",
+            ),
+        ]
+        return custom_urls + urls
+
+    def product_actions(self, obj):
+        return format_html(f"<a class='button' href=\"{reverse('admin:product-add', args=[obj.pk])}\">{_('Add to Wishlisst')}</a>")
 
     shop.short_description = _("Shop")

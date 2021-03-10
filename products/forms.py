@@ -1,20 +1,20 @@
 from django import forms
-from wishlists.models import Wishlist, WishlistItem
 from django.utils.translation import gettext_lazy as _
+
+from wishlists.models import Wishlist, WishlistItem
 
 
 class ActionForm(forms.Form):
-    def __init__(self, *args, queryset=None, **kwargs):
+    def __init__(self, *args, obj=None, **kwargs):
         super().__init__(*args, **kwargs)
-        self.queryset = queryset
+        self.obj = obj
 
-    def form_action(self, queryset, user):
+    def form_action(self, obj, user):
         raise NotImplementedError()
 
-    def save(self, queryset=None, user=None):
-
+    def save(self, obj=None, user=None):
         try:
-            self.form_action(queryset, user)
+            self.form_action(obj, user)
         except Exception as e:
             print(e)
             error_message = str(e)
@@ -23,16 +23,14 @@ class ActionForm(forms.Form):
 
 
 class AddToWishlist(ActionForm):
-    def __init__(self, queryset, *args, **kwargs):
-        super().__init__(queryset=queryset, *args, **kwargs)
+    def __init__(self, *args, obj, **kwargs):
+        super().__init__(*args, obj=obj, **kwargs)
         self.fields["wishlist"] = forms.ModelChoiceField(
-            queryset=Wishlist.objects.all(), required=False
+            queryset=Wishlist.objects.all()
         )
-        for pr in queryset:
-            self.fields[pr.name] = forms.DecimalField(label_suffix=f" {_('quantity')}")
+        self.fields[obj.name] = forms.DecimalField(label_suffix=f"({_('Quantity')})")
 
-    def form_action(self, queryset, user):
+    def form_action(self, obj, user):
         wishlist = self.cleaned_data.get("wishlist")
-        for pr in queryset:
-            wi = WishlistItem(wishlist=wishlist, product=pr, amount=self.cleaned_data.get(pr.name))
-            wi.save()
+        wi = WishlistItem(wishlist=wishlist, product=obj, amount=self.cleaned_data.get(obj.name))
+        wi.save()

@@ -35,7 +35,7 @@ class WishlistItem(models.Model):
 
     @property
     def price(self):
-        return self.product.price * self.amount
+        return round(self.product.price * self.amount, 2)
 
     class Meta:
         verbose_name = _("Wishlist Item")
