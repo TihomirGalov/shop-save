@@ -8,6 +8,7 @@ from products.models import Product
 class Wishlist(models.Model):
     user = CurrentUserField(verbose_name=_("User"))
     name = models.CharField(max_length=50, verbose_name=_("Name"))
+    bought = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

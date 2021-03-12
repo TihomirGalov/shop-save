@@ -20,7 +20,7 @@ from django.contrib.auth import views
 from .forms import UserLoginForm
 import os
 from django.conf import settings
-from .views import register
+from .views import register, privacy_policy, toc
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 
@@ -37,6 +37,8 @@ urlpatterns = [
         name='login'
     ),
     path('register/', register, name='register'),
+    path('privacy-policy/', privacy_policy, name='privacy-policy'),
+    path('toc/', toc, name='toc'),
     path('', admin.site.urls),
     url(r'^i18n/', include('django.conf.urls.i18n'))
 ]

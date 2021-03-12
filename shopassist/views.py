@@ -23,3 +23,11 @@ def register(response):
     else:
         form = RegisterForm()
     return render(response, os.path.join(settings.BASE_DIR, "shopassist/templates/admin/register.html"), {'form': form})
+
+
+def privacy_policy(response):
+    return render(response, os.path.join(settings.BASE_DIR, "shopassist/templates/privacy_policy.html"))
+
+
+def toc(response):
+    return render(response, os.path.join(settings.BASE_DIR, "shopassist/templates/terms_of_conditions.html"))

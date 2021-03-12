@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-11 20:11+0200\n"
+"POT-Creation-Date: 2021-03-12 19:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgstr "Изтекли"
 msgid "Active"
 msgstr "Активни"
 
-#: products/admin.py:110 products/admin.py:90
+#: products/admin.py:90
 msgid "Add to Wishlist"
 msgstr "Добави в списъка с желания"
 
@@ -34,7 +34,7 @@ msgstr "Добави в списъка с желания"
 msgid "Shop"
 msgstr "Магазин"
 
-#: products/admin.py:113
+#: products/admin.py:113 wishlists/admin.py:51
 msgid "Actions"
 msgstr "Действия"
 
@@ -50,7 +50,7 @@ msgstr "Изтича"
 msgid "Promotion"
 msgstr "Промоция"
 
-#: products/models.py:15 shopassist/settings.py:168 shopassist/settings.py:170
+#: products/models.py:15 shopassist/settings.py:173 shopassist/settings.py:175
 msgid "Promotions"
 msgstr "Промоции"
 
@@ -70,7 +70,7 @@ msgstr "Описание"
 msgid "Porduct"
 msgstr "Продукт"
 
-#: products/models.py:29 shopassist/settings.py:173 shopassist/settings.py:175
+#: products/models.py:29 shopassist/settings.py:178 shopassist/settings.py:180
 msgid "Products"
 msgstr "Продукти"
 
@@ -78,6 +78,14 @@ msgstr "Продукти"
 #, python-format
 msgid " %(title)s "
 msgstr ""
+
+#: shopassist/dashboard.py:16
+msgid "Applications"
+msgstr "Приложения"
+
+#: shopassist/dashboard.py:22
+msgid "Recent Actions"
+msgstr "Последни Действия"
 
 #: shopassist/forms.py:15
 msgid "Username:"
@@ -91,27 +99,42 @@ msgstr "Парола:"
 msgid "Guest login"
 msgstr "Вход за гости"
 
-#: shopassist/settings.py:155
+#: shopassist/settings.py:160
 msgid "Authentication and Authorization"
 msgstr "Аутентикация и Оторизация"
 
-#: shopassist/settings.py:158
+#: shopassist/settings.py:163
 msgid "Groups"
 msgstr "Групи"
 
-#: shopassist/settings.py:159
+#: shopassist/settings.py:164
 msgid "Users"
 msgstr "Потребители"
 
-#: shopassist/settings.py:163 shopassist/settings.py:165 stores/models.py:13
+#: shopassist/settings.py:168 shopassist/settings.py:170 stores/models.py:13
 msgid "Stores"
 msgstr "Магазини"
 
-#: shopassist/settings.py:178 shopassist/settings.py:180 wishlists/models.py:24
+#: shopassist/settings.py:183 shopassist/settings.py:185
+#: wishlists/dashboard_modules.py:49 wishlists/models.py:25
 msgid "Wishlists"
 msgstr "Списъци с желания"
 
+#: shopassist/settings.py:188
+msgid "Legal"
+msgstr "Политика"
+
+#: shopassist/settings.py:192
+msgid "Privacy Policy"
+msgstr "Политика за поверителност"
+
+#: shopassist/settings.py:196
+msgid "Terms of Conditions"
+msgstr "Условия за ползване"
+
 #: shopassist/templates/admin/base_site.html:5
+#: shopassist/templates/privacy_policy.html:5
+#: shopassist/templates/terms_of_conditions.html:5
 msgid "Django site admin"
 msgstr "Shop & Save"
 
@@ -149,31 +172,39 @@ msgstr "Влез като гост"
 msgid "Register"
 msgstr "Регистрирай се"
 
-#: wishlists/admin.py:20
+#: wishlists/admin.py:50
 msgid "Number of Items"
 msgstr "Брой продукти"
+
+#: wishlists/dashboard_modules.py:13
+msgid "Bought Wishlists"
+msgstr "Закупени Списъци с желания"
+
+#: wishlists/dashboard_modules.py:40
+msgid "Show for "
+msgstr "Покажиза"
 
 #: wishlists/models.py:9
 msgid "User"
 msgstr "Потребители"
 
-#: wishlists/models.py:23 wishlists/models.py:28
+#: wishlists/models.py:24 wishlists/models.py:29
 msgid "Wishlist"
 msgstr "Списък с желания"
 
-#: wishlists/models.py:30
+#: wishlists/models.py:31
 msgid "Product"
 msgstr "Продукт"
 
-#: wishlists/models.py:31
+#: wishlists/models.py:32
 msgid "Quantity"
 msgstr "Количество"
 
-#: wishlists/models.py:41
+#: wishlists/models.py:42
 msgid "Wishlist Item"
 msgstr "Продукт"
 
-#: wishlists/models.py:42
+#: wishlists/models.py:43
 msgid "Wishlists Items"
 msgstr "Продукти"
 

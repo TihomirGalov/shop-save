@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django.contrib.humanize",
     'django_crontab',
 
     'stores',
@@ -86,6 +87,7 @@ TEMPLATES = [
 
 
 JET_DEFAULT_THEME = 'light-gray'
+JET_INDEX_DASHBOARD = "shopassist.dashboard.ShopAndSaveDashboard"
 
 WSGI_APPLICATION = 'shopassist.wsgi.application'
 
@@ -133,14 +135,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-JET_APP_INDEX_DASHBOARD = 'jet.dashboard.dashboard.DefaultAppIndexDashboard'
-
 
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -179,5 +183,18 @@ JET_SIDE_MENU_ITEMS = [  # A list of application or custom item dicts
         "label": _("Wishlists"),
         "app_label": "wishlists",
         "items": [{"name": "wishlists.wishlist", "label": _("Wishlists")},]
+    },
+    {
+        "label": _("Legal"),
+        "items": [
+            {
+                "url": {"type": "reverse", "name": "privacy-policy"},
+                "label": _("Privacy Policy")
+            },
+            {
+                "url": {"type": "reverse", "name": "toc"},
+                "label": _("Terms of Conditions")
+            },
+        ]
     }
 ]
