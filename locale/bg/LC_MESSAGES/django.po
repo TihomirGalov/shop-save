@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-10 23:20+0200\n"
+"POT-Creation-Date: 2021-03-11 20:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,9 +26,17 @@ msgstr "Изтекли"
 msgid "Active"
 msgstr "Активни"
 
+#: products/admin.py:110 products/admin.py:90
+msgid "Add to Wishlist"
+msgstr "Добави в списъка с желания"
+
 #: products/admin.py:112
 msgid "Shop"
 msgstr "Магазин"
+
+#: products/admin.py:113
+msgid "Actions"
+msgstr "Действия"
 
 #: products/models.py:7 stores/models.py:12
 msgid "Store"
@@ -42,7 +50,7 @@ msgstr "Изтича"
 msgid "Promotion"
 msgstr "Промоция"
 
-#: products/models.py:15 shopassist/settings.py:173 shopassist/settings.py:175
+#: products/models.py:15 shopassist/settings.py:168 shopassist/settings.py:170
 msgid "Promotions"
 msgstr "Промоции"
 
@@ -62,7 +70,7 @@ msgstr "Описание"
 msgid "Porduct"
 msgstr "Продукт"
 
-#: products/models.py:29 shopassist/settings.py:178 shopassist/settings.py:180
+#: products/models.py:29 shopassist/settings.py:173 shopassist/settings.py:175
 msgid "Products"
 msgstr "Продукти"
 
@@ -83,23 +91,23 @@ msgstr "Парола:"
 msgid "Guest login"
 msgstr "Вход за гости"
 
-#: shopassist/settings.py:160
+#: shopassist/settings.py:155
 msgid "Authentication and Authorization"
 msgstr "Аутентикация и Оторизация"
 
-#: shopassist/settings.py:163
+#: shopassist/settings.py:158
 msgid "Groups"
 msgstr "Групи"
 
-#: shopassist/settings.py:164
+#: shopassist/settings.py:159
 msgid "Users"
 msgstr "Потребители"
 
-#: shopassist/settings.py:168 shopassist/settings.py:170 stores/models.py:13
+#: shopassist/settings.py:163 shopassist/settings.py:165 stores/models.py:13
 msgid "Stores"
 msgstr "Магазини"
 
-#: shopassist/settings.py:183 shopassist/settings.py:185 wishlists/models.py:24
+#: shopassist/settings.py:178 shopassist/settings.py:180 wishlists/models.py:24
 msgid "Wishlists"
 msgstr "Списъци с желания"
 

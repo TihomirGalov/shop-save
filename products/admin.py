@@ -87,7 +87,7 @@ class ProductAdmin(admin.ModelAdmin):
         context = self.admin_site.each_context(request)
         context["opts"] = self.model._meta
         context["form"] = form
-        context["title"] = "Add to Wishlist"
+        context["title"] = _("Add to Wishlist")
         template = "admin/product/run_action.html"
         return TemplateResponse(
             request,
@@ -107,6 +107,7 @@ class ProductAdmin(admin.ModelAdmin):
         return custom_urls + urls
 
     def product_actions(self, obj):
-        return format_html(f"<a class='button' href=\"{reverse('admin:product-add', args=[obj.pk])}\">{_('Add to Wishlisst')}</a>")
+        return format_html(f"<a class='button' href=\"{reverse('admin:product-add', args=[obj.pk])}\">{_('Add to Wishlist')}</a>")
 
     shop.short_description = _("Shop")
+    product_actions.short_description = _("Actions")
